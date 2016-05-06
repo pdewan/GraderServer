@@ -1,8 +1,8 @@
 package gradingTools.server;
 
 import gradingTools.Driver;
-import gradingTools.server.DriverServerLauncher;
-import gradingTools.server.DriverServerObject;
+import gradingTools.server.GraderServerLauncher;
+import gradingTools.server.RemoteGraderServer;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
@@ -13,16 +13,16 @@ import port.PortAccessKind;
 
 
 
-public class ADriverServerLauncher extends AnAbstractDuplexRPCServerPortLauncher implements DriverServerLauncher   {
-	public ADriverServerLauncher(String aServerName,
+public class AGraderServerLauncher extends AnAbstractDuplexRPCServerPortLauncher implements GraderServerLauncher   {
+	public AGraderServerLauncher(String aServerName,
 			String aServerPort) {
 		super (aServerName, aServerPort);
 	}
-	public ADriverServerLauncher() {
+	public AGraderServerLauncher() {
 	}
 
-	protected DriverServerObject getDriverObject() {
-		return new ADriverServerObject();
+	protected RemoteGraderServer getDriverObject() {
+		return new ARemoteGraderServer();
 	}
 	
 //	protected  ConnectionListener getConnectionListener (InputPort anInputPort) {
@@ -34,7 +34,7 @@ public class ADriverServerLauncher extends AnAbstractDuplexRPCServerPortLauncher
 
 	protected void registerRemoteObjects() {
 		DuplexRPCServerInputPort anRPCServerInputPort = (DuplexRPCServerInputPort) mainPort;
-		DriverServerObject aDriverObject = getDriverObject();
+		RemoteGraderServer aDriverObject = getDriverObject();
 		anRPCServerInputPort.register(aDriverObject);
 	}
 	
@@ -51,7 +51,7 @@ public class ADriverServerLauncher extends AnAbstractDuplexRPCServerPortLauncher
 		if (args.length != 0) {
 			try {
 				aServerNumber = Integer.parseInt(args[0]);
-				aServerId = DriverServerLauncher.computeServerId(aServerNumber);
+				aServerId = GraderServerLauncher.computeServerId(aServerNumber);
 			
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -61,7 +61,7 @@ public class ADriverServerLauncher extends AnAbstractDuplexRPCServerPortLauncher
 		System.out.println (DRIVER_SERVER_START_MESSAGE); 
 
 
-		(new ADriverServerLauncher(DRIVER_SERVER_NAME, aServerId)).launch();
+		(new AGraderServerLauncher(DRIVER_SERVER_NAME, aServerId)).launch();
 		System.out.println (DRIVER_SERVER_START_MESSAGE + " after launch");
 	}
 }

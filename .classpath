@@ -3,7 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/comp110-grader"/>
-	<classpathentry kind="lib" path="D:/dewan_backup/Java/lib/gipc.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RemoteGraderClient"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GraderDispatcherClient"/>
+	<classpathentry kind="lib" path="D:/dewan_backup/Java/lib/gipc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

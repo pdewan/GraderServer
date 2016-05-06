@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 import framework.logging.recorder.ConglomerateRecorder;
 import gradingTools.Driver;
-import gradingTools.server.DriverServerObject;
+import gradingTools.server.RemoteGraderServer;
 
-public class ADriverServerObject implements DriverServerObject {
+public class ARemoteGraderServer implements RemoteGraderServer {
 
 	@Override
 	public Exception drive(String[] args) {
