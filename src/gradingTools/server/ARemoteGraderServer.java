@@ -5,7 +5,9 @@ import java.util.Arrays;
 import framework.logging.recorder.ConglomerateRecorder;
 import gradingTools.Driver;
 import gradingTools.server.RemoteGraderServer;
-
+/*
+ * Implements the interface in the corresponding client project
+ */
 public class ARemoteGraderServer implements RemoteGraderServer {
 
 	@Override
