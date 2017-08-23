@@ -6,5 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/RemoteGraderClient"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GraderDispatcherClient"/>
 	<classpathentry kind="lib" path="D:/dewan_backup/Java/lib/gipc.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Comp401AllChecks"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
