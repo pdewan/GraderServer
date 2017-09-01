@@ -1,5 +1,8 @@
 package edu.unc.cs.dispatcherClient;
-
+/*
+ * This is the entry point for the grader server jar, which happens to be 
+ * a client of the dispathcing server 
+ */
 
 import edu.unc.cs.dispatcherServer.AGraderServerDescription;
 import edu.unc.cs.dispatcherServer.DispatcherRegistry;
