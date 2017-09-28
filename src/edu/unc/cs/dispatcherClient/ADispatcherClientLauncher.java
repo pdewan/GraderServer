@@ -28,6 +28,10 @@ public class ADispatcherClientLauncher extends AnAbstractDuplexRPCClientPortLaun
 		super(DispatcherClientLauncher.CLIENT_NAME, aServerHost, GraderServerLauncher.DRIVER_SERVER_ID, GraderServerLauncher.DRIVER_SERVER_NAME);
 			
 	}
+	public ADispatcherClientLauncher(String myName, String aServerHost, String aServerId) {
+		super(myName, aServerHost, aServerId, GraderServerLauncher.DRIVER_SERVER_NAME);
+			
+	}
 	
 //	protected PortAccessKind getPortAccessKind() {
 //		return PortAccessKind.SIMPLEX;
@@ -101,8 +105,8 @@ public class ADispatcherClientLauncher extends AnAbstractDuplexRPCClientPortLaun
 		// getPort will create another port, it should be called createPort
 		return (SynchronizingConnectionListener) getConnectionListener(mainPort);
 	}
-	public static DispatcherClientLauncher createAndLaunch(String aServerHost, String aServerId) {
-		ADispatcherClientLauncher aClient = new ADispatcherClientLauncher(aServerHost, aServerId);
+	public static DispatcherClientLauncher createAndLaunch(String aClientName, String aServerHost, String aServerId) {
+		ADispatcherClientLauncher aClient = new ADispatcherClientLauncher(aClientName, aServerHost, aServerId);
 		aClient.launch();
 		
 			
@@ -124,16 +128,24 @@ public class ADispatcherClientLauncher extends AnAbstractDuplexRPCClientPortLaun
 		return aClient;
 			
 	}
-	public static DispatcherClientLauncher createAndLaunchLocal(String aServerId) {
-		return createAndLaunch("localhost", aServerId);
+	public static DispatcherClientLauncher createAndLaunchLocal(String aClientName, String aServerId) {
+		return createAndLaunch(aClientName, "localhost", aServerId);
 	}
-
+	static int curId = 0;
 	
 	public static void main (String[] args) {
+		
+		String aClientName = DispatcherClientLauncher.CLIENT_NAME;
+		if (args.length > 0) {
+			aClientName = args[0];
+		} else {
+			aClientName = aClientName + curId;
+			curId++;
+		}
 		Driver.setHeadlessExitOnComplete(false);
-		DispatcherClientLauncher aClient = createAndLaunchLocal (DispatcherServerLauncher.DISPATCHER_SERVER_ID);
+		DispatcherClientLauncher aClient = createAndLaunchLocal (aClientName, DispatcherServerLauncher.DISPATCHER_SERVER_ID);
 		if (aClient != null) {
-			aClient.getDispatcherRegistry().registerDriverServer(new ARemoteGraderServer(), new AGraderServerDescription());			
+			aClient.getDispatcherRegistry().registerDriverServer(new ARemoteGraderServer(), new AGraderServerDescription(aClientName));			
 		}
 		
 		

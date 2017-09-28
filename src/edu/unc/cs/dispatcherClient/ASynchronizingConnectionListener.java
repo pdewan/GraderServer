@@ -55,7 +55,8 @@ public class ASynchronizingConnectionListener extends ATracingConnectionListener
 
 		super.notConnected(arg0, arg1, arg2);
 		setReceivedConnectionStatus();
-
+		System.err.println("Exiting");
+		System.exit(-1);
 		
 		
 	}
