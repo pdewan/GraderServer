@@ -7,16 +7,11 @@ package edu.unc.cs.dispatcherClient;
 import edu.unc.cs.dispatcherServer.AGraderServerDescription;
 import edu.unc.cs.dispatcherServer.DispatcherRegistry;
 import edu.unc.cs.dispatcherServer.DispatcherServerLauncher;
-import gradingTools.Driver;
-import gradingTools.server.AGraderServerLauncher;
 import gradingTools.server.ARemoteGraderServer;
 import gradingTools.server.GraderServerLauncher;
-import gradingTools.server.RemoteGraderServer;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.rpc.duplex.AnAbstractDuplexRPCClientPortLauncher;
-import port.ATracingConnectionListener;
-import port.PortAccessKind;
 
 public class ADispatcherClientLauncher extends AnAbstractDuplexRPCClientPortLauncher  implements DispatcherClientLauncher{
 	SynchronizingConnectionListener connectionListener;
@@ -142,14 +137,11 @@ public class ADispatcherClientLauncher extends AnAbstractDuplexRPCClientPortLaun
 			aClientName = aClientName + curId;
 			curId++;
 		}
-		Driver.setHeadlessExitOnComplete(false);
+//		Driver.setHeadlessExitOnComplete(false);
 		DispatcherClientLauncher aClient = createAndLaunchLocal (aClientName, DispatcherServerLauncher.DISPATCHER_SERVER_ID);
 		if (aClient != null) {
 			aClient.getDispatcherRegistry().registerDriverServer(new ARemoteGraderServer(), new AGraderServerDescription(aClientName));			
 		}
-		
-		
-		
 	}
 	
 	
